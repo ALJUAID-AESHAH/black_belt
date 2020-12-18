@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'mystyle.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>hello {{user.first_name}}! Let's edit your wish!</h1> <a href="/logout">logout</a>
+        <br><br>
+        <div>
+            <form action="/edit/{{wish.id}}" method="POST">
+                {% csrf_token %}
+                <div>I wish for <input type="text" name="name" value="{{wish.name}}"></div><br>
+                <div>Description
+                    <input type="text" name="desc" value="{{wish.desc}}"></div><br>
+                <button>edit</button><button><a href="/cancel">Cancel</a></button>
+
+            </form>
+        </div>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+</body>
+
+</html>

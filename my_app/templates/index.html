@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'mystyle.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h2>Registration</h2>
+                <form action="/register" method="POST">
+                    {% csrf_token %}
+                    <div class="mb-3 row g-3 align-items-center">
+                        <div class="col-auto">
+                            <label for="first" class="col-form-label">First Name</label></div>
+                        <div class="col-auto">
+                            <input type="text" class="form-control" id="first" name="first_name">
+                        </div>
+                    </div>
+                    <div class="mb-3 row g-3 align-items-center">
+                        <div class="col-auto">
+                            <label for="last" class="col-form-label">Last Name</label></div>
+                        <div class="col-auto">
+                            <input type="text" class="form-control" id="last" name="last_name">
+                        </div>
+                    </div>
+                    <div class="mb-3 col-md-6">
+                        <label for="exampleInputEmail1" class="form-label">Email </label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="email@example.com" name="email">
+                    </div>
+                    <div class="mb-3 col-md-6">
+                        <label for="exampleInputPassword1" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="exampleInputPassword1" name="password">
+                    </div>
+                    <div class="mb-3 col-md-6">
+                        <label for="exampleInputPassword1" class="form-label">Confirm PW</label>
+                        <input type="password" class="form-control" id="exampleInputPassword1" name="confirm">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Register</button>
+                </form>
+                {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+            <div class="col">
+                <h2>Login</h2>
+                <form action="/login" method="POST">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Email address</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="exampleInputPassword1" name="password">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </form>
+                {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

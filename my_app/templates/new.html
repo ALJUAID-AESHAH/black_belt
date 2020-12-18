@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'mystyle.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>hello {{user.first_name}}! Make a wish!</h1><a href="/logout">logout</a>
+        <div>
+            <form action="/create" method="POST">
+                {% csrf_token %}
+                <div>I wish for <input type="text" name="name"></div><br>
+                <div>Description
+                    <input type="text" name="desc"></div><br>
+                <button>submit</button><button><a href="/cancel">Cancel</a></button>
+
+            </form>
+        </div>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+</body>
+
+</html>

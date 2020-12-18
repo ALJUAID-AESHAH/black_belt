@@ -1,0 +1,21 @@
+.container {
+    width: 990px;
+    height: 500px;
+    margin: 40px auto;
+    text-align: center;
+}
+
+.col {
+    width: auto;
+    height: auto;
+    border: 1px solid black;
+    padding: 10px;
+}
+
+.new {
+    width: 100px;
+    height: 30px;
+    border: 2px solid black;
+    color: black;
+    text-decoration: none;
+}
